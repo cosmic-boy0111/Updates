@@ -1,11 +1,19 @@
 {
   "user_table" : [
     {
+      "user_id": 1,
+      "first_name": "Sakshi",
+      "last_name": "Khatri",
+      "profile_image": "",
+      "phone": "8080314051",
+      "email": "gauravbhagat2040@gmail.com",
+      "password": "12345",
+      "bio" : "Hello this is the worst application on which i am working so i think i gona die after completing this project",
       "tvshow_library": [
         {
           "tvshow_id": 1,
           "tvshow_name": "The Mission",
-          "category": "",
+          "category": "Drama",
           "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium iste in veritatis amet nemo dolorem placeat ipsum harum ullam non!",
           "image": "./images/christmas-balls-8449616_1280.jpg",
           "video": "./videos/delorean_-_49834.mp4",
@@ -54,8 +62,7 @@
           "description": "matot tilev mallu lihin subitatpulov rorre tema mauqsiuq otsui isin talleper maspi tareauq ,saitselom metatpulov ,rutanrepsA ?subirolod otsui muspi setatpulov otcetihcra iuq ,taecalp erotnevni atcid iuqes euqmerolod somissingid silicaf ,obacilpxe eativ mauQ .tile gnicisipida rutetcesnoc tema tis rolod muspi meroL",
           "image": "./images/beetle-8360945_1280.jpg",
           "video": "./videos/delorean_-_49834.mp4",
-          "year": "2022",
-          "date": "10 - 05 - 2015"
+          "year": "2022"
         },
         {
           "tvshow_id": 3,
