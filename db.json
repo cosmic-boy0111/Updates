@@ -1,14 +1,15 @@
 {
-  "user_table" : [
+  "user_table": [
     {
-      "user_id": 1,
+      "id": 1,
+      "token" : "token",
       "first_name": "Sakshi",
       "last_name": "Khatri",
       "profile_image": "",
-      "phone": "8080314051",
+      "phone": "8080314052",
       "email": "gauravbhagat2040@gmail.com",
       "password": "12345",
-      "bio" : "Hello this is the worst application on which i am working so i think i gona die after completing this project",
+      "bio": "Hello this is the worst application on which i am working so i think i gona die after completing this project",
       "tvshow_library": [
         {
           "tvshow_id": 1,
@@ -76,5 +77,4 @@
       ]
     }
   ]
-
 }

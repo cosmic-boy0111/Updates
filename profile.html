@@ -71,7 +71,9 @@
     }
 
     .profile_info {
-        width: 600px;
+        max-width: 600px;
+        min-width: 100px;
+        padding: 0rem 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -80,6 +82,7 @@
     .profile_label {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
     }
 
     .before_image_container {
@@ -169,17 +172,16 @@
 
                 </div>
                 <div class="">
-                    <h3 id="user_name">Sakshi Kahtri</h3>
+                    <h3 id="user_name"></h3>
                 </div>
                 <div class="mb-2">
-                    <span id="user_phone">8080314051</span>
+                    <span id="user_phone"></span>
                 </div>
                 <div class="mb-2">
-                    <span id="user_email">gauravbhagat2040@gmail.com</span>
+                    <span id="user_email"></span>
                 </div>
                 <div class="mb-2 text-center">
-                    <span class="user_bio">Hello this is the worst application on which i am working so i think i gona
-                        die after completing this project</span>
+                    <span id="user_bio"></span>
                 </div>
                 <div class="btn_contianer">
                     <button type="button" class="btn btn-secondary">Log out</button>
@@ -247,6 +249,7 @@
     <script src="https://kit.fontawesome.com/5d93eb1089.js" crossorigin="anonymous"></script>
     <script>
         const fetchProfileData = async () => {
+            
             fetch('http://localhost:3000/user_table')
                 .then(response => {
                     if (!response.ok) {
@@ -262,11 +265,13 @@
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
+            
         }
 
         fetchProfileData();
 
         const setUserInfo = (user) => {
+            
             var profile = document.getElementById('profile_info_image');
             var name = document.getElementById('user_name')
             var phone = document.getElementById('user_phone')
@@ -277,26 +282,66 @@
             phone.innerHTML = user.phone;
             email.innerHTML = user.email;
             bio.innerHTML = user.bio;
+
+            console.log(user.first_name);
+            
+            const fname = document.getElementById('fname');
+            const lname = document.getElementById('lname');
+            const editbio = document.getElementById('bio');
+            var image = document.getElementById('profile_image')
+            fname.value = user.first_name;
+            lname.value = user.last_name;
+            editbio.value = user.bio;
+            image.src = user.profile_image || './images/user.png';
+
         }
 
         var myForm = document.getElementById("edit_form");
 
         myForm.addEventListener("submit", function (event) {
             event.preventDefault();
-            const fname = document.getElementById('fname');
-            const lname = document.getElementById('lname');
-            const bio = document.getElementById('bio');
+            const fname = document.getElementById('fname').value;
+            const lname = document.getElementById('lname').value;
+            const bio = document.getElementById('bio').value;
             var image = document.getElementById('profile_image').src
             // console.log(image);
             image = image.includes('images/user.png') ? "" : image
-            console.log(fname , lname , bio , image);
+            // console.log(fname, lname, bio, image);
+
+            const updatedData = {
+                "first_name": fname,
+                "last_name": lname,
+                "bio": bio,
+                "profile_image": image
+            };
+
+            const api = 'http://localhost:3000/user_table/1';
+
+            fetch(api, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Updated data:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
 
         });
+
 
         const uploadFile = () => {
             const fileInput = document.getElementById('icon-button-file');
             if (fileInput.files.length > 0) {
                 var selectedFile = fileInput.files[0];
+                relativePath = selectedFile.webkitRelativePath;
+                console.log(relativePath);
+                console.log(selectedFile);
                 var fileName = document.getElementById('profile_file_name')
                 fileName.innerHTML = selectedFile.name;
                 var reader = new FileReader();
